@@ -1,5 +1,5 @@
 import QS from 'qs';
-import { Message } from 'view-design';
+import { Taost } from 'vant';
 import * as axios from 'axios'
 
 const urlencoded = 'application/x-www-form-urlencoded;charset=UTF-8';
@@ -57,7 +57,7 @@ export default function ({ $axios, app: { router, store }, route, redirect, next
                 data = { success: true, data: null, status: 200, msg: '下载成功' };
             }
             if (!res.data.success && !(res.config.custom && res.config.custom.blob)) {
-                if(process.client) Message.error(res.data.msg || res.msg || '后台未定义错误信息');
+                if(process.client) Toast.fail(res.data.msg || res.msg || '后台未定义错误信息');
             }
             return data;
         }
@@ -73,14 +73,14 @@ export default function ({ $axios, app: { router, store }, route, redirect, next
     $axios.onResponseError(error => {
       let response = error.response;
       if (!response) {
-        if(process.client) Message.error('未知错误！');
+        if(process.client) Toast.fail('未知错误！');
       } else {
           let status = response.status * 1;
           if (status >= 500) {
               if (status === 504) {
-                if(process.client) Message.error(response.statusText + '响应超时,请重试');
+                if(process.client) Toast.fail(response.statusText + '响应超时,请重试');
               } else {
-                if(process.client) Message.error(response.statusText + '服务器出错');
+                if(process.client) Toast.fail(response.statusText + '服务器出错');
               }
           } else if (status >= 400) {
               if (status === 401) {
@@ -91,9 +91,9 @@ export default function ({ $axios, app: { router, store }, route, redirect, next
                       localStorage.removeItem('token');
                       localStorage.removeItem('userID');
                   }
-                  if(process.client) Message.error('请登录');
+                  if(process.client) Toast.fail('请登录');
               } else {
-                if(process.client) Message.error(response.data.msg || response.message || error.message);
+                if(process.client) Toast.fail(response.data.msg || response.message || error.message);
               }
           }
       }

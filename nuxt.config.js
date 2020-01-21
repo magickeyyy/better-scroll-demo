@@ -57,6 +57,7 @@ module.exports = {
   plugins: [
 	{ src: '~/plugins/directive', ssr: false },
     '~/plugins/axios',
+    '~/plugins/vant',
   ],
   /*
    ** Nuxt.js dev-modules
