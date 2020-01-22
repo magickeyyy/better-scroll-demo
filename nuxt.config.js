@@ -44,20 +44,26 @@ module.exports = {
   /*
    ** Global CSS
    */
-  css: [{
-    src: '~/assets/style/reset.less',
-    lang: 'less'
-  }, ],
+  css: [
+	  { src: '~/assets/style/reset.less', lang: 'less'}, 
+	  { src: '~/assets/style/common/index.less', lang: 'less'}, 
+	],
   styleResources: {
     less: '~/assets/style/variable.less'
   },
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: [
-	{ src: '~/plugins/directive', ssr: false },
+  plugins: [{
+      src: '~/plugins/directive',
+      ssr: false
+    },
     '~/plugins/axios',
     '~/plugins/vant',
+    {
+      src: '~/plugins/better-scroll',
+      ssr: false
+    },
   ],
   /*
    ** Nuxt.js dev-modules
@@ -69,6 +75,7 @@ module.exports = {
   modules: [
     'cookie-universal-nuxt',
     '@nuxtjs/axios',
+    '@nuxtjs/proxy',
     '@nuxtjs/style-resources'
   ],
   /*

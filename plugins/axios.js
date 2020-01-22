@@ -1,5 +1,5 @@
 import QS from 'qs';
-import { Taost } from 'vant';
+import { Toast } from 'vant';
 import * as axios from 'axios'
 
 const urlencoded = 'application/x-www-form-urlencoded;charset=UTF-8';
