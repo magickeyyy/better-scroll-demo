@@ -10,6 +10,6 @@ BScroll.use(ObserveDOM)
 BScroll.use(PullDown)
 BScroll.use(PullUp)
 
-Vue.prototype.$scroll = function (el, options = {}) {
-    return new BScroll(el, options);
+Vue.prototype.$scroll = function (el, option) {
+    return new BScroll(el, option);
 }
